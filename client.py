@@ -47,12 +47,12 @@ def main():
     server_addr = (host, PORT)
     nick = input("Zadaj svoju prezývku: ").strip() or "Fero"
 
+    # Najprv pošlem HELLO, aby sa automaticky priradil port
+    sock.sendto(f"Práve sa pripojil: {nick}".encode('utf-8'), server_addr)
+
     # Spustíme vlákno na prijímanie správ
     thread = threading.Thread(target=receive_messages, args= (sock,), daemon=True)
     thread.start()
-
-    # Pošlem HELLO
-    sock.sendto(f"Práve sa pripojil: {nick}".encode('utf-8'), server_addr)
 
     ## Posielaj správy
     send_messages(sock, server_addr, nick)
