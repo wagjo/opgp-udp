@@ -1,7 +1,7 @@
 import socket
-import sys
 import threading
 
+# Konfigurácia
 PORT = 55777
 BUFFER_SIZE = 1024
 
